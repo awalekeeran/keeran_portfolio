@@ -20,6 +20,10 @@
     overflow: hidden;
 }
 
+[data-theme="dark"] .home-section {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+}
+
 .home-section::before {
     content: '';
     position: absolute;
@@ -183,6 +187,7 @@
     padding: var(--spacing-lg);
     background-color: var(--bg-secondary);
     border-radius: var(--border-radius);
+    transition: background-color var(--transition-base);
 }
 
 .info-item {
@@ -255,6 +260,10 @@
     transform: translateY(-5px);
 }
 
+[data-theme="dark"] .skill-item:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+}
+
 .skill-item i {
     font-size: 3rem;
     color: var(--primary-color);
@@ -290,6 +299,10 @@
     border-color: var(--primary-color);
     box-shadow: var(--shadow-xl);
     transform: translateY(-10px);
+}
+
+[data-theme="dark"] .service-card {
+    background-color: var(--bg-secondary);
 }
 
 .service-icon {
@@ -462,6 +475,10 @@
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
     transition: all var(--transition-base);
+}
+
+[data-theme="dark"] .contact-item {
+    background-color: var(--bg-secondary);
 }
 
 .contact-item:hover {

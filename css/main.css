@@ -4,7 +4,7 @@
 
 /* CSS Variables */
 :root {
-    /* Colors */
+    /* Colors - Light Mode (Default) */
     --primary-color: #6366f1;
     --primary-dark: #4f46e5;
     --secondary-color: #8b5cf6;
@@ -53,6 +53,21 @@
     --transition-slow: 0.5s ease;
 }
 
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-light: #9ca3af;
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-dark: #0f172a;
+    --border-color: #374151;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
 /* Reset & Base Styles */
 * {
     margin: 0;
@@ -71,6 +86,7 @@ body {
     background-color: var(--bg-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 /* Typography */
@@ -197,10 +213,10 @@ ul {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    background: var(--bg-primary);
+    color: var(--primary-color);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -213,8 +229,45 @@ ul {
     z-index: 999;
 }
 
+.scroll-top-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.scroll-top svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.scroll-top-circle-bg {
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 3;
+}
+
+.scroll-top-circle {
+    fill: none;
+    stroke: url(#scrollGradient);
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.scroll-top i {
+    position: relative;
+    z-index: 1;
+}
+
 .scroll-top:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.05);
     box-shadow: var(--shadow-xl);
 }
 

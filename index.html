@@ -58,6 +58,12 @@
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
+                <li class="nav-item">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -497,24 +503,37 @@
                         <li><a href="#services">CI/CD & DevOps</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>Metrics</h3>
-                    <div class="footer-metrics">
+            </div>
+            
+            <!-- Metrics Bar -->
+            <div class="footer-metrics-bar">
+                <div class="container">
+                    <div class="metrics-horizontal">
                         <div class="metric-item">
-                            <span class="metric-value">50+</span>
+                            <div class="metric-circle">
+                                <i class="fas fa-project-diagram"></i>
+                                <span class="metric-value">5+</span>
+                            </div>
                             <span class="metric-label">Projects</span>
                         </div>
                         <div class="metric-item">
-                            <span class="metric-value">10+</span>
+                            <div class="metric-circle">
+                                <i class="fas fa-code"></i>
+                                <span class="metric-value">10+</span>
+                            </div>
                             <span class="metric-label">Technologies</span>
                         </div>
                         <div class="metric-item">
-                            <span class="metric-value">5+</span>
-                            <span class="metric-label">Years Exp</span>
+                            <div class="metric-circle">
+                                <i class="fas fa-award"></i>
+                                <span class="metric-value">10+</span>
+                            </div>
+                            <span class="metric-label">Years Experience</span>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2026 Keeran. All rights reserved.</p>
                 <div class="footer-bottom-links">
@@ -527,7 +546,19 @@
 
     <!-- Scroll to Top Button -->
     <button class="scroll-top" id="scrollTop">
-        <i class="fas fa-arrow-up"></i>
+        <div class="scroll-top-content">
+            <svg>
+                <defs>
+                    <linearGradient id="scrollGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <circle class="scroll-top-circle-bg" cx="30" cy="30" r="27"></circle>
+                <circle class="scroll-top-circle" cx="30" cy="30" r="27" id="scrollProgressCircle"></circle>
+            </svg>
+            <i class="fas fa-arrow-up"></i>
+        </div>
     </button>
 
     <!-- Custom JS -->

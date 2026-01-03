@@ -19,6 +19,10 @@
     backdrop-filter: blur(10px);
 }
 
+[data-theme="dark"] .navbar.scrolled {
+    background-color: rgba(17, 24, 39, 0.95);
+}
+
 .navbar .container {
     display: flex;
     align-items: center;
@@ -51,6 +55,45 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-lg);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--border-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin-left: var(--spacing-sm);
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: rotate(180deg);
+}
+
+.theme-toggle .sun-icon {
+    display: none;
+}
+
+.theme-toggle .moon-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: none;
 }
 
 .nav-item {

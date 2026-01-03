@@ -7,6 +7,27 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // ============================================================
+    // Theme Toggle
+    // ============================================================
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+    
+    // Check for saved theme preference or default to 'light' mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', currentTheme);
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const theme = htmlElement.getAttribute('data-theme');
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+    
+    
+    // ============================================================
     // Navigation Toggle for Mobile
     // ============================================================
     const navToggle = document.getElementById('navToggle');
@@ -92,9 +113,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     // ============================================================
-    // Scroll to Top Button
+    // Scroll to Top Button with Progress Circle
     // ============================================================
     const scrollTopBtn = document.getElementById('scrollTop');
+    const scrollProgressCircle = document.getElementById('scrollProgressCircle');
+    
+    // Calculate circle circumference for progress animation
+    if (scrollProgressCircle) {
+        const radius = scrollProgressCircle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+        
+        // Set up the circle
+        scrollProgressCircle.style.strokeDasharray = circumference;
+        scrollProgressCircle.style.strokeDashoffset = circumference;
+        
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollTop / docHeight;
+            
+            // Update circle progress
+            const offset = circumference - (scrollPercent * circumference);
+            scrollProgressCircle.style.strokeDashoffset = offset;
+        }
+        
+        // Add scroll listener for progress
+        window.addEventListener('scroll', updateScrollProgress);
+        updateScrollProgress(); // Initial call
+    }
     
     function toggleScrollTopButton() {
         if (window.scrollY > 300) {
