@@ -23,9 +23,20 @@
     }
     
     .profile-image {
-        width: 350px;
-        height: 350px;
+        width: 340px;
+        height: 340px;
     }
+    
+    .profile-image img {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .profile-image .orbit-ring:nth-child(1) { width: 320px; height: 320px; }
+    .profile-image .orbit-ring:nth-child(2) { width: 360px; height: 360px; }
+    .profile-image .orbit-ring:nth-child(3) { width: 400px; height: 400px; }
+    .profile-image::before { width: 380px; height: 380px; }
+    .profile-image::after { width: 420px; height: 420px; }
 }
 
 /* Mobile Devices (max-width: 768px) */
@@ -54,9 +65,31 @@
     }
     
     .profile-image {
-        width: 280px;
-        height: 280px;
+        width: 300px;
+        height: 300px;
     }
+    
+    .profile-image img {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .profile-image .orbit-ring:nth-child(1) { width: 280px; height: 280px; }
+    .profile-image .orbit-ring:nth-child(2) { width: 320px; height: 320px; }
+    .profile-image .orbit-ring:nth-child(3) { width: 360px; height: 360px; }
+    .profile-image::before { width: 340px; height: 340px; }
+    .profile-image::after { width: 380px; height: 380px; }
+    .profile-image .glow-bg { width: 220px; height: 220px; }
+    .profile-image .status-indicator { bottom: 35px; right: 35px; width: 16px; height: 16px; }
+    
+    /* Floating Skills - Tablet */
+    .floating-skills-container { width: 400px; height: 400px; }
+    .skill-badge { padding: 6px 10px; font-size: 0.7rem; }
+    .skill-badge i { font-size: 0.9rem; }
+    .skill-badge.position-3 { right: -12%; }
+    .skill-badge.position-6 { left: -12%; }
+    
+    .profile-image .code-bracket { font-size: 1.1rem; }
     
     .home-buttons {
         justify-content: center;
@@ -141,9 +174,36 @@
     }
     
     .profile-image {
-        width: 240px;
-        height: 240px;
+        width: 260px;
+        height: 260px;
     }
+    
+    .profile-image img {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .profile-image .orbit-ring:nth-child(1) { width: 240px; height: 240px; }
+    .profile-image .orbit-ring:nth-child(2) { width: 280px; height: 280px; }
+    .profile-image .orbit-ring:nth-child(3) { width: 320px; height: 320px; }
+    .profile-image::before { width: 300px; height: 300px; }
+    .profile-image::after { width: 340px; height: 340px; }
+    .profile-image .glow-bg { width: 180px; height: 180px; }
+    .profile-image .status-indicator { bottom: 30px; right: 30px; width: 14px; height: 14px; }
+    .profile-image .accent-dot { display: none; }
+    
+    /* Floating Skills - Small Mobile: Show only 4 badges */
+    .floating-skills-container { width: 340px; height: 340px; }
+    .skill-badge { padding: 5px 8px; font-size: 0.65rem; }
+    .skill-badge i { font-size: 0.8rem; }
+    .skill-badge.position-5,
+    .skill-badge.position-6 { display: none; }
+    .skill-badge.position-1 { top: -8%; }
+    .skill-badge.position-2 { right: -5%; top: 20%; }
+    .skill-badge.position-3 { right: -8%; }
+    .skill-badge.position-4 { bottom: 5%; right: 10%; }
+    
+    .profile-image .code-bracket { font-size: 1rem; }
     
     .home-buttons {
         flex-direction: column;
@@ -222,3 +282,6 @@
         box-shadow: none !important;
     }
 }
+
+/* ...existing code... */
+
