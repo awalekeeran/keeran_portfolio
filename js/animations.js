@@ -233,4 +233,150 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    
+    // ============================================================
+    // Dynamic Floating Skills Animation
+    // ============================================================
+    initFloatingSkills();
+    
 });
+
+
+/**
+ * Dynamic Floating Skills System
+ * Displays rotating skill badges around the profile image
+ */
+function initFloatingSkills() {
+    
+    // Skills data with icons (from your skills section)
+    const skills = [
+        { name: 'C#', icon: 'fas fa-code', color: '#68217a' },
+        { name: '.NET Core', icon: 'fas fa-network-wired', color: '#512bd4' },
+        { name: 'Azure', icon: 'fab fa-microsoft', color: '#0089d6' },
+        { name: 'Angular', icon: 'fab fa-angular', color: '#dd0031' },
+        { name: 'TypeScript', icon: 'fab fa-js', color: '#3178c6' },
+        { name: 'SQL Server', icon: 'fas fa-database', color: '#cc2927' },
+        { name: 'Docker', icon: 'fab fa-docker', color: '#2496ed' },
+        { name: 'Kubernetes', icon: 'fas fa-dharmachakra', color: '#326ce5' },
+        { name: 'Git', icon: 'fab fa-git-alt', color: '#f05032' },
+        { name: 'ASP.NET', icon: 'fas fa-server', color: '#512bd4' },
+        { name: 'REST API', icon: 'fas fa-plug', color: '#6366f1' },
+        { name: 'Python', icon: 'fab fa-python', color: '#3776ab' },
+        { name: 'Go', icon: 'fab fa-golang', color: '#00add8' },
+        { name: 'JavaScript', icon: 'fab fa-js-square', color: '#f7df1e' },
+        { name: 'HTML5', icon: 'fab fa-html5', color: '#e34f26' },
+        { name: 'CSS3', icon: 'fab fa-css3-alt', color: '#1572b6' },
+        { name: 'Redis', icon: 'fas fa-memory', color: '#dc382d' },
+        { name: 'MongoDB', icon: 'fas fa-leaf', color: '#47a248' },
+        { name: 'Kafka', icon: 'fas fa-stream', color: '#231f20' },
+        { name: 'CI/CD', icon: 'fas fa-code-branch', color: '#6366f1' },
+        { name: 'DevOps', icon: 'fas fa-infinity', color: '#0078d4' },
+        { name: 'Microservices', icon: 'fas fa-cubes', color: '#8b5cf6' },
+        { name: 'React', icon: 'fab fa-react', color: '#61dafb' },
+        { name: 'Node.js', icon: 'fab fa-node-js', color: '#339933' },
+    ];
+    
+    // Get skill badge elements
+    const badges = document.querySelectorAll('.skill-badge');
+    if (badges.length === 0) return;
+    
+    // Shuffle skills
+    const shuffledSkills = [...skills].sort(() => Math.random() - 0.5);
+    
+    // Track which skills are currently shown
+    let currentSkillIndices = [];
+    let skillPool = [...shuffledSkills];
+    
+    // Configuration
+    const config = {
+        displayDuration: 3500,      // How long each skill stays visible
+        staggerDelay: 600,          // Delay between each badge appearing
+        rotationInterval: 4000,     // How often to rotate skills
+        maxVisibleBadges: 6         // Maximum badges visible at once
+    };
+    
+    /**
+     * Get next skill from pool (cycles through all skills)
+     */
+    function getNextSkill() {
+        if (skillPool.length === 0) {
+            skillPool = [...shuffledSkills].sort(() => Math.random() - 0.5);
+        }
+        return skillPool.shift();
+    }
+    
+    /**
+     * Update a single badge with new skill
+     */
+    function updateBadge(badge, skill) {
+        // First hide the badge
+        badge.classList.remove('visible', 'float-1', 'float-2', 'float-3');
+        badge.classList.add('hiding');
+        
+        // After exit animation, update content and show
+        setTimeout(() => {
+            badge.innerHTML = `<i class="${skill.icon}" style="color: ${skill.color}"></i><span>${skill.name}</span>`;
+            badge.classList.remove('hiding');
+            
+            // Small delay before showing
+            setTimeout(() => {
+                badge.classList.add('visible');
+                // Add random float animation
+                const floatClass = `float-${Math.floor(Math.random() * 3) + 1}`;
+                badge.classList.add(floatClass);
+            }, 50);
+        }, 400);
+    }
+    
+    /**
+     * Initialize badges with staggered entrance
+     */
+    function initializeBadges() {
+        badges.forEach((badge, index) => {
+            setTimeout(() => {
+                const skill = getNextSkill();
+                currentSkillIndices[index] = skill;
+                badge.innerHTML = `<i class="${skill.icon}" style="color: ${skill.color}"></i><span>${skill.name}</span>`;
+                badge.classList.add('visible');
+                const floatClass = `float-${(index % 3) + 1}`;
+                badge.classList.add(floatClass);
+            }, index * config.staggerDelay);
+        });
+    }
+    
+    /**
+     * Rotate skills - randomly replace some badges
+     */
+    function rotateSkills() {
+        // Randomly select 2-3 badges to update
+        const numToUpdate = Math.floor(Math.random() * 2) + 2;
+        const badgeIndices = [...Array(badges.length).keys()].sort(() => Math.random() - 0.5).slice(0, numToUpdate);
+        
+        badgeIndices.forEach((badgeIndex, i) => {
+            setTimeout(() => {
+                const skill = getNextSkill();
+                currentSkillIndices[badgeIndex] = skill;
+                updateBadge(badges[badgeIndex], skill);
+            }, i * 300);
+        });
+    }
+    
+    // Start the system
+    initializeBadges();
+    
+    // Set up rotation interval
+    setInterval(rotateSkills, config.rotationInterval);
+    
+    // Pause animation when tab is not visible (performance optimization)
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            badges.forEach(badge => {
+                badge.style.animationPlayState = 'paused';
+            });
+        } else {
+            badges.forEach(badge => {
+                badge.style.animationPlayState = 'running';
+            });
+        }
+    });
+}

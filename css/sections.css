@@ -368,6 +368,187 @@
     );
 }
 
+/* ===== Developer/Code Themed Elements ===== */
+
+/* Code Brackets */
+.profile-image .code-bracket {
+    position: absolute;
+    font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    opacity: 0;
+    z-index: 5;
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    animation: bracket-float 8s ease-in-out infinite;
+}
+
+.profile-image .bracket-left {
+    top: 5%;
+    left: -5%;
+    animation-delay: 0s;
+}
+
+.profile-image .bracket-right {
+    bottom: 10%;
+    right: -8%;
+    animation-delay: 4s;
+    color: var(--secondary-color);
+}
+
+@keyframes bracket-float {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    15%, 85% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.9;
+        transform: translateY(-8px);
+    }
+}
+
+/* ===== Dynamic Floating Skills System ===== */
+.floating-skills-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    height: 480px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.skill-badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(99, 102, 241, 0.05);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: none;
+    z-index: 5;
+}
+
+.skill-badge i {
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.skill-badge.visible {
+    animation: skill-badge-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.skill-badge.hiding {
+    animation: skill-badge-exit 0.4s ease-in forwards;
+}
+
+/* Position badges around the circle */
+.skill-badge.position-1 {
+    top: -5%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+}
+
+.skill-badge.position-2 {
+    top: 15%;
+    right: -10%;
+}
+
+.skill-badge.position-3 {
+    top: 50%;
+    right: -15%;
+    transform: translateY(-50%) scale(0.8);
+}
+
+.skill-badge.position-4 {
+    bottom: 10%;
+    right: 5%;
+}
+
+.skill-badge.position-5 {
+    bottom: -5%;
+    left: 30%;
+}
+
+.skill-badge.position-6 {
+    top: 30%;
+    left: -15%;
+}
+
+@keyframes skill-badge-enter {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes skill-badge-exit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-10px);
+    }
+}
+
+/* Floating animation for visible badges */
+.skill-badge.visible.float-1 { animation: skill-badge-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, badge-float-1 4s ease-in-out 0.5s infinite; }
+.skill-badge.visible.float-2 { animation: skill-badge-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, badge-float-2 4.5s ease-in-out 0.5s infinite; }
+.skill-badge.visible.float-3 { animation: skill-badge-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, badge-float-3 5s ease-in-out 0.5s infinite; }
+
+@keyframes badge-float-1 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes badge-float-2 {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+@keyframes badge-float-3 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Dark theme for skill badges */
+[data-theme="dark"] .skill-badge {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.95), rgba(17, 24, 39, 0.9));
+    border-color: rgba(99, 102, 241, 0.3);
+    color: #e5e7eb;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(99, 102, 241, 0.1);
+}
+
+/* Dark Theme for Developer Elements */
+[data-theme="dark"] .profile-image .code-bracket {
+    text-shadow: 0 0 15px rgba(99, 102, 241, 0.7);
+}
+
 /* ==========================================================================
    About Section
    ========================================================================== */
